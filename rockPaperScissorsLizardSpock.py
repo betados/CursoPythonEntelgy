@@ -3,16 +3,15 @@
 
 import random
 
-moves = ['rock', 'paper', 'scissors', 'lizard', 'spock']
+moves = ['rock', 'lizard', 'spock', 'scissors', 'paper']
 
-done = False
-while not done:
+
+while True:
     print('\n\n')
     gameMove = moves[random.randrange(len(moves))]
     userMove = input("Make your move:")
 
     if userMove == 'exit':
-        done = True
         break
 
     if userMove not in moves:
@@ -33,7 +32,7 @@ while not done:
         if moves[gameIndex-i] == userMove:
             break
 
-    if abs(i) % 2 == 0:
+    if i % 2 == 0:
         print("Machine wins!")
     else:
         print("YOU win!")
