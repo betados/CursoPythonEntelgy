@@ -9,13 +9,15 @@ done = False
 while not done:
     print('\n\n')
     gameMove = moves[random.randrange(len(moves))]
-    userMove = input("Play your move:")
-
-    if userMove not in moves:
-        continue
+    userMove = input("Make your move:")
 
     if userMove == 'exit':
+        done = True
         break
+
+    if userMove not in moves:
+        print("Escribe bien!")
+        continue
 
     print("Computers move is: " + gameMove)
     if gameMove == userMove:
@@ -24,14 +26,14 @@ while not done:
 
     gameIndex = moves.index(gameMove)
     userIndex = moves.index(userMove)
-    lista = [gameIndex, userIndex]
 
-    if max(lista) == len(moves) - 1 and min(lista) == 0:
-        winner = 0
-    else:
-        winner = max(lista)
+    i = 0
+    while True:
+        i += 1
+        if moves[gameIndex-i] == userMove:
+            break
 
-    if gameMove == moves[winner]:
-        print("Ha ganado la máquina")
+    if abs(i) % 2 == 0:
+        print("Machine wins!")
     else:
-        print("Has ganado")
+        print("YOU win!")

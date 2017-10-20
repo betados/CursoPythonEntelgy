@@ -16,6 +16,7 @@ while not done:
         break
 
     if userMove not in moves:
+        print("Escribe bien!")
         continue
 
     print("Computers move is: " + gameMove)
