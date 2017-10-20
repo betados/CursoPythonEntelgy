@@ -22,7 +22,7 @@ while not done:
     if gameMove == userMove:
         print('DRAW!')
         continue
-git 
+
     gameIndex = moves.index(gameMove)
     userIndex = moves.index(userMove)
     lista = [gameIndex, userIndex]
@@ -36,6 +36,3 @@ git
         print("Machine wins!")
     else:
         print("YOU win!")
-
-
-
