@@ -4,33 +4,29 @@
 import random
 
 moves = ['rock', 'lizard', 'spock', 'scissors', 'paper']
-
-
 while True:
     print('\n\n')
-    gameMove = moves[random.randrange(len(moves))]
+    machineMove = moves[random.randrange(len(moves))]
     userMove = input("Make your move:")
 
     if userMove == 'exit':
+        print('BYE!')
         break
 
     if userMove not in moves:
-        print("Escribe bien!")
+        print("¡Escribe bien!")
         continue
 
-    print("Computers move is: " + gameMove)
-    if gameMove == userMove:
+    print("Computers move is: " + machineMove)
+    if machineMove == userMove:
         print('DRAW!')
         continue
 
-    gameIndex = moves.index(gameMove)
-    userIndex = moves.index(userMove)
+    machineIndex = moves.index(machineMove)
 
     i = 0
-    while True:
+    while moves[machineIndex-i] != userMove:
         i += 1
-        if moves[gameIndex-i] == userMove:
-            break
 
     if i % 2 == 0:
         print("Machine wins!")
