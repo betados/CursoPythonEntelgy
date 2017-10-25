@@ -18,6 +18,7 @@ class Snake(object):
         self.keyDict[39]()
 
     def add(self):
+        # FIXME anadirlo el línea con la cola
         self.lista.append({'x': self.lista[-1]['x']-1, 'y': self.lista[-1]['y']})
 
     def draw(self, canvas):
@@ -31,6 +32,7 @@ class Snake(object):
 
         self.lista[0]['x'] += self.vel['x']
         self.lista[0]['y'] += self.vel['y']
+        # TODO si se sale por un lado que vuelva por el otro
 
     def left(self):
         if self.estado != "right":
@@ -89,11 +91,13 @@ class Scenario(object):
 
 
 class Interaction(object):
+    # TODO interaction snake-snake
     # @staticmethod
     def food(self, snake, scenario):
         for apple in scenario.food:
             if snake.lista[0]['x'] == apple[0] and snake.lista[0]['y'] == apple[1]:
                 snake.add()
+                # TODO delete the apple and create a new one
 
 
 # Handler for mouse click
