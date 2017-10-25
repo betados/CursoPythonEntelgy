@@ -9,7 +9,7 @@ while True:
     machineMove = moves[random.randrange(len(moves))]
     userMove = input("Make your move:")
 
-    if userMove == 'exit':
+    if userMove == 'exit': 
         print('BYE!')
         break
 
