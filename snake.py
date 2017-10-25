@@ -18,8 +18,7 @@ class Snake(object):
         self.keyDict[39]()
 
     def add(self):
-        # FIXME anadirlo el línea con la cola
-        self.lista.append({'x': self.lista[-1]['x']-1, 'y': self.lista[-1]['y']})
+        self.lista.append({'x': self.lista[-1]['x'], 'y': self.lista[-1]['y']})
 
     def draw(self, canvas):
         for element in self.lista:
@@ -77,7 +76,7 @@ class Scenario(object):
         self.width = width
         self.height = height
         self.res = res
-        self.food = [(random.randrange(0, width/res), random.randrange(0, height/res)) for _ in range(6)]
+        self.food = [(random.randrange(0, width/res), random.randrange(0, height/res)) for _ in range(3)]
         self.lightGreen = [Square((x+res*(y % (res*2) == 0), y), res, 'GreenYellow ') for x in range(width)
                            if x % (res*2) == 0 for y in range(height) if y % res == 0]
         self.backGround = Square((0, 0), width, 'DarkKhaki')
@@ -89,15 +88,21 @@ class Scenario(object):
         for apple in self.food:
             canvas.draw_circle(((apple[0]+0.5)*self.res, (apple[1]+0.5)*self.res), self.res/2 * 0.7, 1, 'Red', 'Red')
 
+    def newApple(self):
+        self.food.append((random.randrange(0, width/self.res), random.randrange(0, height/self.res)))
+
 
 class Interaction(object):
     # TODO interaction snake-snake
     # @staticmethod
     def food(self, snake, scenario):
-        for apple in scenario.food:
+        food = list(scenario.food)
+        for i, apple in enumerate(food):
             if snake.lista[0]['x'] == apple[0] and snake.lista[0]['y'] == apple[1]:
                 snake.add()
-                # TODO delete the apple and create a new one
+                scenario.food.pop(i)
+                scenario.newApple()
+                break
 
 
 # Handler for mouse click
